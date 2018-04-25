@@ -16,11 +16,18 @@ It is basically a 101 workshop about [*Artificial Neural Networks*](https://en.w
 
 ## Setup ⚙️
 
-Coming soon!
+We'll be working on [Azure Notebooks](https://notebooks.azure.com/) for which you can create and use a free account to train ANN models online.
+
+A new library will be needed, and for this, you can import all the code from this repo: https://github.com/RodolfoFerro/FLISoL18
+
 
 ## Content 👾
 
-Coming soon!
+All repo content is contained inside the [main]() folder, in which you'll find a set of Jupyter Notebooks with the ANN code, along with a pre-trained model and a set of images use in the Notebooks.
+
+Demo Gist for [PerceptronFLISoL18.py]() and [SigmoidFLISoL18.py]():
+<script src="https://gist.github.com/RodolfoFerro/46dc7ba3dded4cd6a3a9d58e1284557a.js"></script>
+
 
 ***
 
