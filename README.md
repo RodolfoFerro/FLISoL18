@@ -23,13 +23,87 @@ A new library will be needed, and for this, you can import all the code from thi
 
 ## Content 👾
 
-All repo content is contained inside the [main]() folder, in which you'll find a set of Jupyter Notebooks with the ANN code, along with a pre-trained model and a set of images use in the Notebooks.
+All repo content is contained inside the [main](https://github.com/RodolfoFerro/FLISoL18/tree/master/main) folder, in which you'll find a set of Jupyter Notebooks with the ANN code, along with a pre-trained model and a set of images use in the Notebooks.
 
-Demo Gist for [PerceptronFLISoL18.py]() and [SigmoidFLISoL18.py]():
+Demo Gist for [PerceptronFLISoL18.py](https://github.com/RodolfoFerro/FLISoL18/blob/master/PerceptronFLISoL18.py) and [SigmoidFLISoL18.py](https://github.com/RodolfoFerro/FLISoL18/blob/master/SigmoidFLISoL18.py): https://gist.github.com/RodolfoFerro/46dc7ba3dded4cd6a3a9d58e1284557a
 
-{% gist 46dc7ba3dded4cd6a3a9d58e1284557a %}
-<script src="https://gist.github.com/RodolfoFerro/46dc7ba3dded4cd6a3a9d58e1284557a.js"></script>
 
+#### PerceptronFLISoL18
+```python
+import numpy as np
+
+
+class PerceptronFLISoL():
+    def __init__(self, entradas, pesos):
+        """Constructor de la clase."""
+        self.n = len(entradas)
+        self.entradas = np.array(entradas)
+        self.pesos = np.array(pesos)
+
+    def voy_no_voy(self, umbral):
+        """Calcula el output deseado."""
+        si_no = (self.entradas @ self.pesos) >= umbral
+        if si_no:
+            return "Sí voy."
+        else:
+            return "No voy."
+
+
+if __name__ == '__main__':
+    entradas = [1, 1, 1, 1]
+    pesos = [-4, 3, 1, 2]
+
+    dev = PerceptronFLISoL(entradas, pesos)
+    print(dev.voy_no_voy(3))
+```
+
+#### SigmoidFLISoL18
+```python
+import numpy as np
+
+
+class SigmoidNeuron():
+    def __init__(self, n):
+        np.random.seed(123)
+        self.synaptic_weights = 2 * np.random.random((n, 1)) - 1
+
+    def __sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
+
+    def __sigmoid_derivative(self, x):
+        return x * (1 - x)
+
+    def train(self, training_inputs, training_output, iterations):
+        for iteration in range(iterations):
+            output = self.predict(training_inputs)
+            error = training_output.reshape((len(training_inputs), 1)) - output
+            adjustment = np.dot(training_inputs.T, error *
+                                self.__sigmoid_derivative(output))
+            self.synaptic_weights += adjustment
+
+    def predict(self, inputs):
+        return self.__sigmoid(np.dot(inputs, self.synaptic_weights))
+
+
+if __name__ == '__main__':
+    # Initialize Sigmoid Neuron:
+    sigmoid = SigmoidNeuron(2)
+    print("Inicialización de pesos aleatorios:")
+    print(sigmoid.synaptic_weights)
+
+    # Datos de entrenamiento:
+    training_inputs = np.array([[1, 0], [0, 0], [0, 1]])
+    training_output = np.array([1, 0, 1]).T.reshape((3, 1))
+
+    # Entrenamos la neurona (100,000 iteraciones):
+    sigmoid.train(training_inputs, training_output, 100000)
+    print("Nuevos pesos sinápticos luego del entrenamiento: ")
+    print(sigmoid.synaptic_weights)
+
+    # Predecimos para probar la red:
+    print("Predicción para [1, 1]: ")
+    print(sigmoid.predict(np.array([1, 1])))
+```
 
 ***
 
