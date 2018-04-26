@@ -18,8 +18,8 @@ class PerceptronFLISoL():
 
 
 if __name__ == '__main__':
-    entradas = [1, 1, 1, 1]
-    pesos = [-4, 3, 1, 2]
+    entradas = [1, 1, 0, 1]
+    pesos = [-4, 3, 11, 2]
 
     dev = PerceptronFLISoL(entradas, pesos)
     print(dev.voy_no_voy(3))

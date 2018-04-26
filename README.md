@@ -1,4 +1,4 @@
-# Intro a Redes Neuronales con Keras (*Intro to NNs w/Keras*)
+# Intro a Redes Neuronales Artificiales con Keras (*Intro to ANNs w/Keras*)
 
 > **Author:** Rodolfo Ferro Pérez <br/>
 > **Email:** [ferro@cimat.mx](mailto:ferro@cimat.mx) <br/>
